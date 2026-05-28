@@ -24,7 +24,7 @@ export default function CompressPdfPage() {
       useObjectStreams: true,
     });
 
-    const blob = new Blob([compressedBytes.buffer], {
+    const blob = new Blob([new Uint8Array(compressedBytes)], {
       type: "application/pdf",
     });
 
