@@ -1,19 +1,18 @@
 "use client";
+
 export const dynamic = "force-dynamic";
+
 import { useState } from "react";
- import { Link } from "next-view-transitions";
-import * as pdfjsLib from "pdfjs-dist";
-import "pdfjs-dist/build/pdf.worker.min.mjs";
+import { Link } from "next-view-transitions";
+
 import {
   Document,
   Packer,
   Paragraph,
 } from "docx";
+
 import { motion } from "framer-motion";
 import { ArrowLeft, FileText } from "lucide-react";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "/pdf.worker.min.mjs";
 
 export default function PdfToWordPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -23,6 +22,11 @@ export default function PdfToWordPage() {
       alert("Please choose a PDF.");
       return;
     }
+
+    const pdfjsLib = await import("pdfjs-dist");
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "/pdf.worker.min.mjs";
 
     const bytes = await file.arrayBuffer();
 
@@ -73,19 +77,21 @@ export default function PdfToWordPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50 px-6 py-8">
 
-      {/* Crazy Back Button */}
       <Link href="/">
         <motion.button
           whileHover={{
             scale: 1.08,
             x: -6,
-            boxShadow: "0 0 25px rgba(168,85,247,0.5)",
+            boxShadow:
+              "0 0 25px rgba(168,85,247,0.5)",
           }}
           whileTap={{ scale: 0.95 }}
           className="group mb-12 relative overflow-hidden flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/70 backdrop-blur-xl border border-purple-200 shadow-lg"
         >
           <motion.div
-            animate={{ x: ["-100%", "200%"] }}
+            animate={{
+              x: ["-100%", "200%"],
+            }}
             transition={{
               duration: 2,
               repeat: Infinity,
@@ -95,7 +101,9 @@ export default function PdfToWordPage() {
           />
 
           <motion.div
-            animate={{ x: [0, -4, 0] }}
+            animate={{
+              x: [0, -4, 0],
+            }}
             transition={{
               duration: 1,
               repeat: Infinity,
@@ -114,7 +122,6 @@ export default function PdfToWordPage() {
         </motion.button>
       </Link>
 
-      {/* Main Section */}
       <motion.div
         initial={{
           opacity: 0,
@@ -129,7 +136,6 @@ export default function PdfToWordPage() {
         }}
         className="max-w-2xl mx-auto"
       >
-        {/* Floating Icon */}
         <motion.div
           animate={{
             y: [0, -10, 0],
@@ -146,7 +152,6 @@ export default function PdfToWordPage() {
           />
         </motion.div>
 
-        {/* Title */}
         <h1 className="text-5xl font-bold text-center text-gray-900 mb-4">
           PDF to Word
         </h1>
@@ -155,7 +160,6 @@ export default function PdfToWordPage() {
           Extract text from PDF and convert it into DOCX.
         </p>
 
-        {/* Card */}
         <div className="bg-white/70 backdrop-blur-xl border border-gray-200 rounded-3xl p-8 shadow-xl">
 
           <input
