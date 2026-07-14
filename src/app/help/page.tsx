@@ -17,7 +17,7 @@ export default function HelpPage() {
           href="/"
           className="px-5 py-2 rounded-xl bg-purple-600 text-white hover:bg-purple-700 transition"
         >
-          ← Back to Home
+          ← Back
         </Link>
 
       </nav>

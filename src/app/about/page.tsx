@@ -19,7 +19,7 @@ export default function AboutPage() {
           href="/"
           className="px-5 py-2 rounded-xl bg-purple-600 text-white hover:scale-105 transition"
         >
-          ← Back to Home
+          ← Back to 
         </Link>
 
       </nav>
